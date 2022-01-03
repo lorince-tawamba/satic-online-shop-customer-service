@@ -12,9 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * @author Lorince TAWAMBA
- * @version 1.0.O
- * @since 03/01/2022
+ * Classe DTO.
+ * @version     1.0.0
+ * @since       03/01/2022
+ * @author      TAWAMBA KOUAKAM Lorince S.
  */
 @Data
 @NoArgsConstructor

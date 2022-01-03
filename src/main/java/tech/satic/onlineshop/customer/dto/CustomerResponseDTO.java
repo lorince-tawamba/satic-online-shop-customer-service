@@ -8,9 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author Lorince TAWAMBA
- * @version 1.0.O
- * @since 27/11/2021
+ * Classe DTO.
+ * @version     1.0.0
+ * @since       03/01/2022
+ * @author      TAWAMBA KOUAKAM Lorince S.
  */
 @Data
 @NoArgsConstructor

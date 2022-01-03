@@ -39,7 +39,7 @@ public class Customer {
     @Column(name = "customer_id")
     private Long id;
 
-    @Column(name = "firts_name", length = 60, nullable = false)
+    @Column(name = "first_name", length = 60, nullable = false)
     private String nom;
 
     @Column(name = "last_name", length = 60)

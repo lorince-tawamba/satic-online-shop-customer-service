@@ -19,7 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name = "Customer")
 @Table(name = "tb_customer",
         uniqueConstraints = {
                 @UniqueConstraint(
@@ -35,22 +35,53 @@ import javax.persistence.*;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id")
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_sequence"
+    )
+    @Column(
+            name = "customer_id",
+            updatable = false
+    )
     private Long id;
 
-    @Column(name = "first_name", length = 60, nullable = false)
+    @Column(
+            name = "first_name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String nom;
 
-    @Column(name = "last_name", length = 60)
+    @Column(
+            name = "last_name",
+            nullable = true,
+            columnDefinition = "TEXT"
+    )
     private String prenom;
 
-    @Column(name = "mobile_phone_number", length = 15)
+    @Column(
+            name = "mobile_phone_number",
+            nullable = true,
+            length = 15
+    )
     private String tel;
 
-    @Column(name = "address", length = 30)
+    @Column(
+            name = "address",
+            nullable = false,
+            length = 60
+    )
     private String adresse;
 
-    @Column(name = "email", length = 30)
+    @Column(
+            name = "email",
+            nullable = false,
+            length = 60
+    )
     private String email;
 }

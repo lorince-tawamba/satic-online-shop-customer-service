@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CustomerResponseDTO {
     private Long id;
-    private String nom;
+    private String name;
     private String prenom;
     private String tel;
     private String adresse;

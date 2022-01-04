@@ -22,7 +22,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class CustomerRequestDTO {
     private Long id;
-    private String nom;
+    private String name;
     private String prenom;
     private String tel;
     private String adresse;

@@ -3,10 +3,8 @@ package tech.satic.onlineshop.customer.web;
 
 // Librairie
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
 import tech.satic.onlineshop.customer.dto.CustomerRequestDTO;
 import tech.satic.onlineshop.customer.dto.CustomerResponseDTO;
 import tech.satic.onlineshop.customer.services.CustomerService;
@@ -19,6 +17,7 @@ import tech.satic.onlineshop.customer.services.CustomerService;
  */
 @RestController
 @RequestMapping(path = "/customer/api")
+@Slf4j
 public class CustomerRestAPI {
 
     private CustomerService customerService;
@@ -29,11 +28,13 @@ public class CustomerRestAPI {
 
     @GetMapping(path = "/info")
     public String info() {
+        log.info("Affiche les informations du microservice");
         return "SATIC ONLINE SHOP CUSTOMER SERVICE";
     }
 
-    @GetMapping(path = "/add")
+    @PostMapping(path = "/add")
     public CustomerResponseDTO addCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
+        log.info("Ajoute un nouveau client dans la base de données");
         return customerService.addCustomer(customerRequestDTO);
     }
 }

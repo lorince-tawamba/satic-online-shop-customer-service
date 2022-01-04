@@ -21,7 +21,7 @@ public interface CustomerMapper {
 
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
-    @Mapping(source = "nom", target = "first_name")
+    //@Mapping(source = "nom", target = "first_name")
     CustomerResponseDTO customerToCustomerResponseDTO(Customer customer);
 
     Customer customerRequestDTOCustomer(CustomerRequestDTO customerRequestDTO);

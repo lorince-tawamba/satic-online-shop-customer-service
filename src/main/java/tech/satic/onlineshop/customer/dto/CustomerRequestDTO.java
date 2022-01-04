@@ -6,11 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * Classe DTO.
  * @version     1.0.0
@@ -22,7 +17,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class CustomerRequestDTO {
     private Long id;
-    private String name;
+    private String nom;
     private String prenom;
     private String tel;
     private String adresse;

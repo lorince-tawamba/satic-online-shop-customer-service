@@ -2,7 +2,6 @@
 package tech.satic.onlineshop.customer.entities;
 
 // Librairies
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

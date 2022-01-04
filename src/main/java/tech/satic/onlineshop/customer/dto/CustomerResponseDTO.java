@@ -2,7 +2,6 @@
 package tech.satic.onlineshop.customer.dto;
 
 // Librairie
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CustomerResponseDTO {
     private Long id;
-    private String name;
+    private String nom;
     private String prenom;
     private String tel;
     private String adresse;

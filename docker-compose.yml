@@ -2,3 +2,34 @@
 
 # Définition de la version 
 version: "3.9"
+
+# Définition des services
+services:
+  # Base de données PostgreSQL pour l'application
+  bd-postgres:
+    image: "postgres:9.6-alpine"
+    container_name: onlineshop/bd-customer-service
+    # Volume monté pour la sauvegarde des données de la BD.
+    volumes:
+      - customer-service-app-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432 # Forward the exposed port 5432 on the container to port 5432 on the host machine
+
+    # Variables d'environement pour nom BD, nom d'utilisateur et mot de passe
+    environment:
+      - POSTGRES_DB=scrum
+      - POSTGRES_USER=scrum
+      - POSTGRES_PASSWORD=scrum
+
+  # Back-end Spring Boot Application
+  customer-app:
+    container_name: onlineshop/customer-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+
+# Volumes pour la DB
+volumes:
+  customer-service-app-data:

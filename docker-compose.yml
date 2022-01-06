@@ -1,35 +1,49 @@
 # Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
-
-# Définition de la version 
 version: "3.9"
 
-# Définition des services
 services:
-  # Base de données PostgreSQL pour l'application
-  bd-postgres:
-    image: "postgres:9.6-alpine"
-    container_name: onlineshop/bd-customer-service
-    # Volume monté pour la sauvegarde des données de la BD.
-    volumes:
-      - customer-service-app-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432 # Forward the exposed port 5432 on the container to port 5432 on the host machine
-
-    # Variables d'environement pour nom BD, nom d'utilisateur et mot de passe
-    environment:
-      - POSTGRES_DB=scrum
-      - POSTGRES_USER=scrum
-      - POSTGRES_PASSWORD=scrum
-
-  # Back-end Spring Boot Application
-  customer-app:
-    container_name: onlineshop/customer-service
+  customer-service-app:
+    container_name: lorincetawamba/onlineshop-customer-service
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 8081:8081
+    environment:
+      - PGUSER=dev
+      - PGPASSWORD=dev
+      - PGDATABASE=bd_customer_service # NOM DE LA BD
+      - PGHOST=postgre-db-data # NAME OF THE SERVICE
+    depends_on:
+      - postgre-db-data
 
-# Volumes pour la DB
+  postgre-db-data:
+    image: "postgres:9.6-alpine"
+    container_name: lorincetawamba/onlineshop-customer-bd
+    restart: always
+    environment:
+      POSTGRES_DB: bd_customer_service
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgre-db-data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: lorincetawamba/pgadmin4_container
+    image: dpage/pgadmin4:5.5
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: dev
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
 volumes:
-  customer-service-app-data:
+  postgre-db-data:
+  pgadmin-data:
